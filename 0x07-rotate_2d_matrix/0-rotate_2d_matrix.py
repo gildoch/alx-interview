@@ -9,12 +9,13 @@ def rotate_2d_matrix(matrix):
 
     # Process each layer from the outermost to the innermost
     for layer in range(n // 2):
-        first, last = layer, n - 1 - layer  # Define the boundaries of the
-        current layer
+        # Define the boundaries of the current layer
+        first, last = layer, n - 1 - layer
 
         for i in range(first, last):
-            offset = i - first  # Offset for elements in the current layer
+            # Offset for elements in the current layer
 
+            offset = i - first
             # Save the top-left element
             top_left = matrix[first][i]
 
