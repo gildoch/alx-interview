@@ -1,32 +1,28 @@
+#!/usr/bin/python3
+"""Rotates a 2D matrix"""
+
+
 def rotate_2d_matrix(matrix):
     """
-    Rotates a 2D matrix 90 degrees clockwise in-place.
-    Args:
-        matrix: A list of n lists where each inner list represents a row of the
-        matrix.
+       Rotates 2D matrix 90 degrees clockwise
+       Matrix is edited in-place
+       args:
+          matrix
     """
-    n = len(matrix)
+    left, right = 0, len(matrix) - 1
 
-    # Process each layer from the outermost to the innermost
-    for layer in range(n // 2):
-        # Define the boundaries of the current layer
-        first, last = layer, n - 1 - layer
-
-        for i in range(first, last):
-            # Offset for elements in the current layer
-
-            offset = i - first
-            # Save the top-left element
-            top_left = matrix[first][i]
-
-            # Move bottom-left to top-left
-            matrix[first][i] = matrix[last - offset][first]
-
-            # Move bottom-right to bottom-left
-            matrix[last - offset][first] = matrix[last][last - offset]
-
-            # Move top-right to bottom-right
-            matrix[last][last - offset] = matrix[i][last]
-
-            # Move top-left to top-right
-            matrix[i][last] = top_left
+    while left < right:
+        for i in range(right - left):
+            top, bottom = left, right
+            # save topleft  value
+            topLeft = matrix[top][left + i]
+            # move bottom left to top left
+            matrix[top][left + i] = matrix[bottom - i][left]
+            # move bottom right to bottom left
+            matrix[bottom - i][left] = matrix[bottom][right - i]
+            # move top right to bottom right
+            matrix[bottom][right - i] = matrix[top + i][right]
+            # move top left to top right
+            matrix[top + i][right] = topLeft
+        right -= 1
+        left += 1
